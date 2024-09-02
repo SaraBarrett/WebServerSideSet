@@ -15,6 +15,10 @@ Route::get('/home', function(){
 })->name('home');
 
 
+Route::get('/users/add_user', function(){
+    return view('users.add_user');
+})->name('users.add');
+
 Route::fallback(function(){
     return '<h3>Estás perdido, <a href='.route('home').'>voltaaaaa...</a></h3>';
 });
