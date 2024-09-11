@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -15,9 +16,9 @@ Route::get('/home', function(){
 })->name('home');
 
 
-Route::get('/users/add_user', function(){
-    return view('users.add_user');
-})->name('users.add');
+Route::get('/users/add_user', [UserController::class, 'addUser'])->name('users.add');
+
+Route::get('/users/all_users', [UserController::class, 'allUsers'])->name('users.all');
 
 Route::fallback(function(){
     return '<h3>Estás perdido, <a href='.route('home').'>voltaaaaa...</a></h3>';
