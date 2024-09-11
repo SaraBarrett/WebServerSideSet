@@ -13,10 +13,7 @@ Route::get('/cursos/{name}', function ($name) {
 });
 
 Route::get('/home', [IndexController::class, 'callHome'])->name('home');
-
-
 Route::get('/users/add_user', [UserController::class, 'addUser'])->name('users.add');
-
 Route::get('/users/all_users', [UserController::class, 'allUsers'])->name('users.all');
 
 Route::fallback(function(){
