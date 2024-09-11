@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -11,9 +12,7 @@ Route::get('/cursos/{name}', function ($name) {
     return '<h1>Olá Mundo'.$name.'</h1>';
 });
 
-Route::get('/home', function(){
-   return view('general.home');
-})->name('home');
+Route::get('/home', [IndexController::class, 'callHome'])->name('home');
 
 
 Route::get('/users/add_user', [UserController::class, 'addUser'])->name('users.add');
