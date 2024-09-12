@@ -63,8 +63,19 @@ class UserController extends Controller
 
         return view('users.view_user', compact('user'));
     }
+  public function deleteUser($id){
+        Db::table('tasks')
+        ->where('user_id', $id)
+        ->delete();
+        $user = Db::table('users')
+        ->where('id', $id)
+        ->delete();
 
-    protected function getUsers(){
+        return back();
+
+    }
+
+    private function getUsers(){
 
         //QUERY PELO QUERY BUILDER
         // $users = DB::table('users')
@@ -77,4 +88,5 @@ class UserController extends Controller
         $users = User::all();
         return $users;
     }
+
 }

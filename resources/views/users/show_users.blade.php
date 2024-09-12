@@ -10,6 +10,7 @@
                 <th scope="col">Email</th>
                 <th scope="col">Password</th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -20,6 +21,7 @@
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->password }}</td>
                     <td><a  href="{{route('users.view', $user->id)}}" class="btn btn-info">Ver/editar</a></td>
+                    <td><a  href="{{route('users.delete', $user->id)}}" class="btn btn-danger">Delete</a></td>
                 </tr>
             @endforeach
         </tbody>

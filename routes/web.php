@@ -20,6 +20,8 @@ Route::get('/users/all_users', [UserController::class, 'allUsers'])->name('users
 
 Route::get('/users/view/{id}', [UserController::class, 'viewUser'])->name('users.view');
 
+Route::get('/users/delete/{id}', [UserController::class, 'deleteUser'])->name('users.delete');
+
 Route::get('/tasks/all_tasks', [TaskController::class, 'allTasks'])->name('tasks.all');
 
 
