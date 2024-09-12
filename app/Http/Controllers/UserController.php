@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Ramsey\Uuid\Guid\Guid;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -55,12 +56,25 @@ class UserController extends Controller
         return view('users.show_users', compact('users', 'myUser'));
     }
 
-    protected function getUsers(){
-        $users = DB::table('users')
-        ->where('name', 'Sara8')
-        ->get();
+    public function viewUser($id){
+        $user = Db::table('users')
+        ->where('id', $id)
+        ->first();
 
-        //dd(  $users);
+        return view('users.view_user', compact('user'));
+    }
+
+    protected function getUsers(){
+
+        //QUERY PELO QUERY BUILDER
+        // $users = DB::table('users')
+        // ->where('name', 'Sara8')
+        // ->get();
+
+        $typeAdmin = User::TYPE_ADMIN;
+        // dd($typeAdmin);
+        //QUERY PELO MODEL
+        $users = User::all();
         return $users;
     }
 }

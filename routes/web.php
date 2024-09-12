@@ -18,6 +18,8 @@ Route::get('/users/add_user', [UserController::class, 'addUser'])->name('users.a
 
 Route::get('/users/all_users', [UserController::class, 'allUsers'])->name('users.all');
 
+Route::get('/users/view/{id}', [UserController::class, 'viewUser'])->name('users.view');
+
 Route::get('/tasks/all_tasks', [TaskController::class, 'allTasks'])->name('tasks.all');
 
 
