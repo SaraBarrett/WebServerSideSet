@@ -19,7 +19,7 @@ class TaskController extends Controller
         ->select('tasks.*', 'users.name as usname')
         ->get();
 
-     
+
 
         return $tasks;
     }
@@ -29,6 +29,19 @@ class TaskController extends Controller
     public function index()
     {
         //
+    }
+
+    public function viewTask($id){
+        $task = DB::table('tasks')->where('tasks.id', $id)->join('users', 'users.id', 'tasks.user_id')
+        ->select('tasks.*', 'users.name as usname')->first();
+
+        return view('tasks.view_task', compact('task'));
+    }
+
+    public function deleteTask($id){
+        DB::table('tasks')->where('id', $id)->delete();
+
+        return back();
     }
 
     /**

@@ -18,11 +18,19 @@ Route::get('/users/add_user', [UserController::class, 'addUser'])->name('users.a
 
 Route::get('/users/all_users', [UserController::class, 'allUsers'])->name('users.all');
 
+Route::post('users/add-user', [UserController::class, 'createUser'])->name('user.create');
+
 Route::get('/users/view/{id}', [UserController::class, 'viewUser'])->name('users.view');
 
 Route::get('/users/delete/{id}', [UserController::class, 'deleteUser'])->name('users.delete');
 
 Route::get('/tasks/all_tasks', [TaskController::class, 'allTasks'])->name('tasks.all');
+
+Route::get('/tasks/view/{id}', [TaskController::class, 'viewTask'])->name('tasks.view');
+
+Route::get('/tasks/delete/{id}', [TaskController::class, 'deleteTask'])->name('tasks.delete');
+
+
 
 
 Route::fallback(function(){

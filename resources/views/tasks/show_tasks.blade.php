@@ -17,6 +17,8 @@
                     <td>{{ $item->name }}</td>
                     <td>{{ $item->description }}</td>
                     <td>{{ $item->usname }}</td>
+                    <td><a  href="{{route('tasks.view', $item->id)}}" class="btn btn-info">Ver/editar</a></td>
+                    <td><a  href="{{route('tasks.delete', $item->id)}}" class="btn btn-danger">Delete</a></td>
                 </tr>
             @endforeach
 
