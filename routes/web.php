@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,7 +15,11 @@ Route::get('/cursos/{name}', function ($name) {
 
 Route::get('/home', [IndexController::class, 'callHome'])->name('home');
 Route::get('/users/add_user', [UserController::class, 'addUser'])->name('users.add');
+
 Route::get('/users/all_users', [UserController::class, 'allUsers'])->name('users.all');
+
+Route::get('/tasks/all_tasks', [TaskController::class, 'allTasks'])->name('tasks.all');
+
 
 Route::fallback(function(){
     return '<h3>Estás perdido, <a href='.route('home').'>voltaaaaa...</a></h3>';

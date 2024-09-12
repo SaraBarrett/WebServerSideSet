@@ -3,9 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TaskController extends Controller
 {
+
+    public function allTasks(){
+        $tasks = $this->getTasks();
+        return view('tasks.show_tasks', compact('tasks'));
+    }
+
+    protected function getTasks(){
+        $tasks = DB::table('tasks')
+        ->join('users', 'users.id', 'tasks.user_id')
+        ->select('tasks.*', 'users.name as usname')
+        ->get();
+
+     
+
+        return $tasks;
+    }
     /**
      * Display a listing of the resource.
      */
