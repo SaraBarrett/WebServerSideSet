@@ -1,6 +1,13 @@
 @extends('layouts.main')
 @section('content')
     <h5>O gestor pedagógico da turma é o {{ $myUser->name }} e o email dele é {{ $myUser->email }}</h5>
+
+    @if(session('message'))
+    <div class="alert alert-success">
+        {{session('message')}}
+    </div>
+    @endif
+
     <h1>Olá, aqui vais ver uma lista de users! </h1>
     <table class="table">
         <thead>

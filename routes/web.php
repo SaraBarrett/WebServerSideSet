@@ -14,11 +14,16 @@ Route::get('/cursos/{name}', function ($name) {
 });
 
 Route::get('/home', [IndexController::class, 'callHome'])->name('home');
+
+//rota que mostra a visualização do formulário
 Route::get('/users/add_user', [UserController::class, 'addUser'])->name('users.add');
+
+//rota post para onde iremos enviar os dados
+Route::post('/users/create-user', [UserController::class, 'createUser'])->name('user.create');
 
 Route::get('/users/all_users', [UserController::class, 'allUsers'])->name('users.all');
 
-Route::post('users/add-user', [UserController::class, 'createUser'])->name('user.create');
+
 
 Route::get('/users/view/{id}', [UserController::class, 'viewUser'])->name('users.view');
 
