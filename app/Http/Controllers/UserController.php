@@ -52,25 +52,49 @@ class UserController extends Controller
     }
 
     public function createUser(Request $request){
+        $action = '';
 
-        $request->validate([
-            'name' => 'string|max:50',
-            'password'=> 'min:6'
-        ]);
+        //é ium update
+        if(isset($request->id)){
+            $action = 'actualizado';
+
+            $request->validate([
+                'name' => 'required|string|max:50',
+            ]);
+
+            User::where('id',$request->id)
+            ->update([
+                'name' => $request->name,
+                'phone' => $request->phone,
+                'address' => $request->address,
+            ]);
+
+        }else{
+            //um insert
+            $action = 'adicionado';
+
+            $request->validate([
+                'name' => 'string|max:50',
+                'password'=> 'min:6'
+            ]);
 
 
-        User::insert([
-            'name' => $request->name,
-            'email' =>$request->email,
-            'password' =>Hash::make($request->password),
-        ]);
+            User::insert([
+                'name' => $request->name,
+                'email' =>$request->email,
+                'password' =>Hash::make($request->password),
+            ]);
+        }
 
-        return redirect()->route('users.all')->with('message', 'O user foi adicionado com sucesso!');
+
+        return redirect()->route('users.all')->with('message', 'O user foi ' .   $action .' com sucesso!');
 
     }
 
     public function allUsers(){
-        $users = $this->getUsers();
+        $search = request()->search;
+
+        $users = $this->getUsers($search);
         $myUser = DB::table('users')->where('name', 'Sara')->first();
 
         return view('users.show_users', compact('users', 'myUser'));
@@ -95,7 +119,7 @@ class UserController extends Controller
 
         }
 
-        private function getUsers(){
+        private function getUsers($search){
 
             //QUERY PELO QUERY BUILDER
             // $users = DB::table('users')
@@ -104,9 +128,16 @@ class UserController extends Controller
 
             $typeAdmin = User::TYPE_ADMIN;
             // dd($typeAdmin);
-            //QUERY PELO MODEL
-            $users = User::all();
+            //QUERY PELO MODEL~
+            if( $search){
+                $users = User::where('name','like', "%{$search}%")
+                ->get();
+            }else{
+                $users = User::all();
+            }
+
             return $users;
         }
 
     }
+

@@ -1,6 +1,7 @@
 @extends('layouts.main')
 @section('content')
-    <h5>O gestor pedagógico da turma é o {{ $myUser->name }} e o email dele é {{ $myUser->email }}</h5>
+    {{-- <h5>O gestor pedagógico da turma é o {{ $myUser->name }} e o email dele é {{ $myUser->email }}</h5> --}}
+
 
     @if(session('message'))
     <div class="alert alert-success">
@@ -9,6 +10,11 @@
     @endif
 
     <h1>Olá, aqui vais ver uma lista de users! </h1>
+
+    <form action="">
+        <input type="text" placeholder="Search" name="search">
+        <button type="submit" class="btn btn-info">Procurar</button>
+    </form>
     <table class="table">
         <thead>
             <tr>
