@@ -13,6 +13,8 @@
         <li><a href="{{ route('route.welcome') }}">Bem Vindo</a></li>
         <li><a href="{{ route('users.add') }}">Adicionar Utilizador</a></li>
         <li><a href="{{ route('users.all') }}">Todos os Users</a></li>
+        <li><a href="{{route('tasks.all')}}">Todas as Tarefas</a></li>
+        <li><a href="{{route('tasks.form')}}"> Adicionar Tarefa</a></li>
     </ul>
 
     <p>O meu nome é {{$contactInfo[0]['name']}} e o meu telefone é {{$contactInfo[0]['phone']}}</p>

@@ -29,11 +29,23 @@ Route::get('/users/view/{id}', [UserController::class, 'viewUser'])->name('users
 
 Route::get('/users/delete/{id}', [UserController::class, 'deleteUser'])->name('users.delete');
 
+
+//tarefas
+//busca todas as tarefas
 Route::get('/tasks/all_tasks', [TaskController::class, 'allTasks'])->name('tasks.all');
 
+//vê uma tarefa
 Route::get('/tasks/view/{id}', [TaskController::class, 'viewTask'])->name('tasks.view');
 
+//apaga uma tarefa
 Route::get('/tasks/delete/{id}', [TaskController::class, 'deleteTask'])->name('tasks.delete');
+
+
+//rota de get, mostra um form
+Route::get('/tasks/show-form', [TaskController::class, 'showForm'])->name('tasks.form');
+
+//rota de post, recebe os dados do formulário e vai inserir na base de dados
+Route::post('/tasks/store', [TaskController::class, 'store'])->name('tasks.store');
 
 
 

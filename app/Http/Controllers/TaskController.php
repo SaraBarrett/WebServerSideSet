@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -47,9 +48,11 @@ class TaskController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function showForm()
     {
-        //
+        $users = User::all();
+
+        return view('tasks.show_form', compact('users'));
     }
 
     /**
@@ -57,7 +60,19 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $request->validate([
+            'name'=> 'string|max:50|required',
+            'user_id' => 'required',
+            'description' => 'required'
+       ]);
+
+       DB::table('tasks')->insert([
+        'name' => $request->name,
+        'description' => $request->description,
+        'user_id' => $request->user_id
+       ]);
+
+       return redirect()->route('tasks.all')->with('message', 'Yay, tarefa adicionada com sucesso');
     }
 
     /**

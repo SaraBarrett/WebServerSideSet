@@ -1,6 +1,14 @@
 @extends('layouts.main')
 @section('content')
     <h1>Olá, aqui vais ver uma lista de tarefas! </h1>
+
+    @if (session('message'))
+        <div class="alert alert-success">
+            {{session('message')}}
+
+        </div>
+
+    @endif
     <table class="table">
         <thead>
             <tr>
