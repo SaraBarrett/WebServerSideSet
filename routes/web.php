@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
@@ -46,6 +47,8 @@ Route::get('/tasks/show-form', [TaskController::class, 'showForm'])->name('tasks
 
 //rota de post, recebe os dados do formulário e vai inserir na base de dados
 Route::post('/tasks/store', [TaskController::class, 'store'])->name('tasks.store');
+
+Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 
 
 
