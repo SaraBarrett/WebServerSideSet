@@ -32,7 +32,7 @@ Route::get('/users/delete/{id}', [UserController::class, 'deleteUser'])->name('u
 
 //tarefas
 //busca todas as tarefas
-Route::get('/tasks/all_tasks', [TaskController::class, 'allTasks'])->name('tasks.all');
+Route::get('/tasks/all_tasks', [TaskController::class, 'allTasks'])->name('tasks.all')->middleware('auth');
 
 //vê uma tarefa
 Route::get('/tasks/view/{id}', [TaskController::class, 'viewTask'])->name('tasks.view');

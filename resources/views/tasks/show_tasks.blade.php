@@ -4,10 +4,9 @@
 
     @if (session('message'))
         <div class="alert alert-success">
-            {{session('message')}}
+            {{ session('message') }}
 
         </div>
-
     @endif
     <table class="table">
         <thead>
@@ -25,8 +24,13 @@
                     <td>{{ $item->name }}</td>
                     <td>{{ $item->description }}</td>
                     <td>{{ $item->usname }}</td>
-                    <td><a  href="{{route('tasks.view', $item->id)}}" class="btn btn-info">Ver/editar</a></td>
-                    <td><a  href="{{route('tasks.delete', $item->id)}}" class="btn btn-danger">Delete</a></td>
+                    @auth
+                        <td><a href="{{ route('tasks.view', $item->id) }}" class="btn btn-info">Ver/editar</a></td>
+
+                        {{-- @if (Auth::user()->user_type == 1) --}}
+                            <td><a href="{{ route('tasks.delete', $item->id) }}" class="btn btn-danger">Delete</a></td>
+                        {{-- @endif --}}
+                    @endauth
                 </tr>
             @endforeach
 
