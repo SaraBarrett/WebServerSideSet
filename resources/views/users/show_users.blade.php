@@ -3,10 +3,10 @@
     {{-- <h5>O gestor pedagógico da turma é o {{ $myUser->name }} e o email dele é {{ $myUser->email }}</h5> --}}
 
 
-    @if(session('message'))
-    <div class="alert alert-success">
-        {{session('message')}}
-    </div>
+    @if (session('message'))
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
     @endif
 
     <h1>Olá, aqui vais ver uma lista de users! </h1>
@@ -21,7 +21,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
-                <th scope="col">Password</th>
+                <th scope="col">Foto</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -32,9 +32,10 @@
                     <th scope="row">{{ $user->id }}</th>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
-                    <td>{{ $user->password }}</td>
-                    <td><a  href="{{route('users.view', $user->id)}}" class="btn btn-info">Ver/editar</a></td>
-                    <td><a  href="{{route('users.delete', $user->id)}}" class="btn btn-danger">Delete</a></td>
+                    <td><img src="{{ $user->photo? asset('storage/' . $user->photo) : asset('images/nophoto.jpg') }}" style="width: 35x; height:35px" alt="">
+                    </td>
+                    <td><a href="{{ route('users.view', $user->id) }}" class="btn btn-info">Ver/editar</a></td>
+                    <td><a href="{{ route('users.delete', $user->id) }}" class="btn btn-danger">Delete</a></td>
                 </tr>
             @endforeach
         </tbody>

@@ -7,6 +7,7 @@ use Ramsey\Uuid\Guid\Guid;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -60,13 +61,21 @@ class UserController extends Controller
 
             $request->validate([
                 'name' => 'required|string|max:50',
+                'photo' =>'image'
             ]);
+
+            $photo = null;
+
+            if($request->hasFile('photo')){
+            $photo = Storage::putFile('photos', $request->photo);
+            }
 
             User::where('id',$request->id)
             ->update([
                 'name' => $request->name,
                 'phone' => $request->phone,
                 'address' => $request->address,
+                'photo' => $photo
             ]);
 
         }else{

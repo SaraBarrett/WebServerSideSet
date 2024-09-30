@@ -2,7 +2,7 @@
 @section('content')
     <!-- já estou a carregar o obj $user -->
 
-    <form method="POST" action="{{ route('user.create') }}">
+    <form method="POST" action="{{ route('user.create') }}" enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="id" value="{{ $user->id }}" id="">
 
@@ -37,6 +37,11 @@
                 Telefone inválida
             @enderror
         </div>
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Foto</label>
+            <input class="form-control" name="photo"  type="file" id="formFile">
+        </div>
+
 
         <button type="submit" class="btn btn-primary">Actualizar</button>
     </form>
