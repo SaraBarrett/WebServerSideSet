@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ExportUsers;
 use App\Models\User;
 use Ramsey\Uuid\Guid\Guid;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -146,6 +148,10 @@ class UserController extends Controller
             }
 
             return $users;
+        }
+
+        public function generateExcel(){
+            return Excel::download(new ExportUsers, 'users.xlsx');
         }
     }
 

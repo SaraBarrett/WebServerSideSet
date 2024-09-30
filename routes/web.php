@@ -24,6 +24,8 @@ Route::post('/users/create-user', [UserController::class, 'createUser'])->name('
 
 Route::get('/users/all_users', [UserController::class, 'allUsers'])->name('users.all');
 
+Route::get('/users/export', [UserController::class, 'generateExcel']);
+
 
 
 Route::get('/users/view/{id}', [UserController::class, 'viewUser'])->name('users.view');
